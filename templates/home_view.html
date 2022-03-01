@@ -1,0 +1,31 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block content %}
+
+{% with backgroundImg="assets/img/header.jpg" %}
+    <header class="text-center text-white d-flex masthead" 
+        style="background-image:url('{% static backgroundImg %}');">
+
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h1 class="text-uppercase"><strong>Your GoTo Mapping tool to find other people!</strong></h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">Login, add your address and see everyone's address, LIVE ON A MAP!</p>
+                <p class="text-faded mb-5">To find out more:</p>
+                <a class="btn btn-primary btn-xl" role="button" href="#services">Login</a>
+                <a class="btn btn-primary btn-xl" role="button" href="#services">Register</a>
+
+            </div>
+        </div>
+    </header>
+{% endwith %}
+    
+{% endblock content %}
+
+
+    
