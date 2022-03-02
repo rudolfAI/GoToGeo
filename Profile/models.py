@@ -29,7 +29,7 @@ class Profile(models.Model):
         return name
 
     def get_absolute_url(self):
-        return reverse("profile", kwargs={"id": self.id})
+        return reverse("Profile:profile_view", kwargs={"id": self.id})
     
     def save(self, *args, **kwargs):
         if not self.id:

@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<div class="row justify-content-center m-3">
+    <div class="col-lg-6 col-12 col-offset-4 card shadow">
+      <div class="card-body">
+            <br/>
+            <h5>Login with your account:</h3>
+            <br/>
+            <form class="login" method="POST">
+                {% csrf_token %}
+                {{form.errors}}
+                <label for="id_login"><strong>{{form.username.label}}:</strong></label>
+                    {{form.username}}
+                <br />
+                <label for="id_password"><strong>Password:</strong></label>
+                {{form.password}}
+                <br />
+                <button class="btn btn-primary p-2 w-100" type="submit">{% trans "Sign In" %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

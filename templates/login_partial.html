@@ -1,0 +1,31 @@
+
+
+{% if user.is_authenticated %}
+<ul class="nav navbar-nav navbar-right me-5">
+    <li class="nav-item dropdown navbar-right">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href={% url 'Profile:profile_view' %}>View Profile</a></li>
+            <li><a class="dropdown-item" href='admin'>Admin Page</a></li>
+            
+            <li>
+                <form id="logoutForm" action="/logout/" method="post">{% csrf_token %}
+                    <a class="dropdown-item"
+                        onclick="return confirm('Are you sure you want to log off?')"
+                        href="javascript:document.getElementById('logoutForm').submit()">Log off</a>
+                </form>
+            </li>
+        </ul>
+
+    </li>
+</ul>
+
+{% else %}
+    <ul class="nav navbar-nav navbar-right">
+        <li class="nav-item"><a class="nav-link active" href={% url 'login' %}>Log in</a></li>
+        <li class="nav-item"><a class="nav-link active" href='admin'>Admin Log In</a></li>
+    </ul>
+{% endif %}

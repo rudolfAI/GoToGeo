@@ -1,0 +1,100 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+    
+<div class='card'>
+    <div class='card-header'>
+        <h5>Profile details:</h5>
+        <img src={{ object.picture.url }} alt="">
+    </div>
+    <div class='card-body'>
+        <table class="table">
+            <tbody>
+                
+                {% if object.user.first_name and object.user.last_name %}
+                    <tr>
+                        <th>Full Name(s)</th>
+                        <td>{{object.user.first_name}}</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Surname</th>
+                        <td>{{object.user.last_name}}</td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <th>Username</th>
+                        <td>{{object.user}}</td>
+                    </tr>
+                {% endif %}
+
+                <tr>
+                    <th>Phone Number</th>
+                    <td>{{object.phone_number}}</td>
+                </tr>
+                <tr>
+                    <th>Home Address</th>
+                    <td>{{object.home_address}}</td>
+                </tr>
+                <tr>
+                    <th>GPS Coordinates</th>
+                    <td>
+                        <p>N{{object.get_h}}</p>
+                        <p>W{{object.get_v}}</p>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class='card-footer'>
+        <button 
+        type="button" 
+        class="btn btn-primary w-100" 
+        data-bs-toggle="modal" 
+        data-bs-target="#update_modal" 
+    >Update Details</button>
+    </div>
+</div>
+
+{# Certify MODAL #}
+<div id="update_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Update Details</h4>
+                <button 
+                        type="button" 
+                        class="btn btn-lg" 
+                        aria-label="Close" 
+                        data-bs-dismiss="modal">&times;
+                </button>
+            </div>
+
+            <div class="modal-body" style="word-break: break-all;">
+                <form method='POST' >{% csrf_token %}
+                    {{form_user.as_table}}
+                    <label for="img">Current Profile Picture</label><br>
+                    <img id="img" src={{object.picture.url}} alt="" width="70px">
+                    {{form_profile.as_p}}
+                    <button class="btn btn-primary w-100">Update</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{# Certify MODAL #}
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
+
+{% endblock content %}
+
