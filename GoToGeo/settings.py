@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     'django_countries',
     'phonenumber_field',
     'django_cleanup.apps.CleanupConfig',
+    
+    #apps
+    'Profile',
 ]
 
 MIDDLEWARE = [
