@@ -12,6 +12,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('profile/', include('Profile.urls'), name='Profile'),
+    path('geo_map/', include('GeoMap.urls'), name='GeoMap'),
     
     path('login/',
          LoginView.as_view

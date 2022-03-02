@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+
+  #map {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    }
+
+  .marker {
+    background-image: url( "{% static 'assets/img/baseline_location_on_black_24dp.png' %}" );
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .mapboxgl-popup {
+    width: 200px;
+    height: 400px;
+  }
+
+  .mapboxgl-popup-content {
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+  }
+</style>
+{{coordinates}}
+
+<div id="map" style="width: 100%; height: 500px"></div>
+
+<script>
+  mapboxgl.accessToken =
+    'pk.eyJ1IjoicnVkb2xmaiIsImEiOiJjbDA5aGV1MWcwMTI4M2ZtanpxNmM4bDRvIn0.jRkvL6l_KOZv8eE3v1KIzw'
+
+    var map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [0, 40],
+      zoom: 1.0
+      });
+
+    var geojson = {
+      type: 'FeatureCollection',
+      features: [
+      {% for i in coordinates %}
+          {
+            type: 'Feature',
+            geometry: {
+                type: 'Point',
+                coordinates: [{{ i.geo_h }}, {{ i.geo_v }}]
+            },
+            properties: {
+                title: '{{ i }}',
+                address: '{{ i.home_address }}',
+                geo_h: '{{i.geo_h}}',
+                geo_v: '{{i.geo_v}}',
+
+            }
+          },
+      {% endfor %}
+      ]
+      };
+
+      for (const feature of geojson.features) {
+        // create a HTML element for each feature
+        const el = document.createElement('div');
+        el.className = 'marker';
+         
+        // make a marker for each feature and add it to the map
+        new mapboxgl.Marker(el)
+          .setLngLat(feature.geometry.coordinates)
+          .setPopup(
+            new mapboxgl.Popup({ offset: 25 }) // add popups
+            .setHTML(
+              `<h3>${feature.properties.title}</h3>
+              <p>Address: ${feature.properties.address}</p>
+              <p>N: ${feature.properties.geo_h}</p>
+              <p>W: ${feature.properties.geo_v}</p>
+
+            )
+          )
+        .addTo(map);
+        }
+</script>
+
+
+{% endblock content %}
