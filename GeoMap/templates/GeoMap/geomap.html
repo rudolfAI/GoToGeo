@@ -60,7 +60,7 @@
                 address: '{{ i.home_address }}',
                 geo_h: '{{i.geo_h}}',
                 geo_v: '{{i.geo_v}}',
-
+                url: '{{i.get_geo_profile_url}}',
             }
           },
       {% endfor %}
@@ -82,7 +82,7 @@
               <p>Address: ${feature.properties.address}</p>
               <p>N: ${feature.properties.geo_h}</p>
               <p>W: ${feature.properties.geo_v}</p>
-
+              <a href=${feature.properties.url}>View Profile</a>`
             )
           )
         .addTo(map);

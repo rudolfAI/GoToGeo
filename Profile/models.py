@@ -29,6 +29,9 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse("Profile:profile_view")
     
+    def get_geo_profile_url(self):
+        return reverse("GeoMap:profile_view", kwargs={"id": self.id})
+    
     def save(self, *args, **kwargs):
         if not self.id:
             temp_picture = self.picture
