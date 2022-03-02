@@ -1,0 +1,93 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Home - GoTo Geo</title>
+    <link rel="stylesheet" href={% static 'home_assets/bootstrap/css/bootstrap.min.css' %}>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+</head>
+
+<style>
+    @media all and (min-width: 992px) {
+	.navbar .nav-item .dropdown-menu{ display: none; }
+	.navbar .nav-item:hover .dropdown-menu{ display: block; }
+	.navbar .nav-item .dropdown-menu{ margin-top:0; }
+}
+
+</style>
+
+<body id="page-top" data-bs-spy="scroll" data-bs-target="#mainNav" data-bs-offset="57">
+    <nav class="navbar navbar-light navbar-expand-lg fixed-top" id="mainNav">
+        <div class="container"><a class="navbar-brand" href="#page-top">{{request.site.name}}</a><button data-bs-toggle="collapse" data-bs-target="#navbarResponsive" class="navbar-toggler navbar-toggler-right" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-align-justify"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href={% url 'GeoMap:geo_view' %}>Geo map</a></li>
+                    {% include 'login_partial.html' %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="text-center text-white d-flex masthead" 
+        
+        {% with backgroundUrl='home_assets/img/header.jpg' %}
+            style="background-image:url('{% static backgroundUrl %}');"
+        {% endwith %}
+
+        >
+
+        <div class="container my-auto">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h1 class="text-uppercase"><strong><br>CREATE AN ACCOUNT AND SEE EVERYONE'S ADDRESS,<br>LIVE ON A INTERACTIVE MAP!<br></strong></h1>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                
+
+                    {% if user.is_authenticated %}
+                        <p class="text-center fs-1">Welcome back</p>
+                        <div class="col-1 text-center"></div>
+                        <div class="col text-center">
+                            <p class="text-uppercase mb-5">View map:</p>
+                            <a class="btn btn-primary btn-xl" role="button" href={% url 'GeoMap:geo_view' %}>Geo Map</a>
+                        </div>
+                        <div class="col-1 text-center"></div>
+                        <div class="col">
+                            <p class="text-uppercase mb-5">View profile:</p>
+                            <a class="btn btn-primary btn-xl" role="button" href={% url 'Profile:profile_view' %} style="margin: 0;">Profile</a>
+                        </div>
+                        <div class="col-1"></div>
+                    {% else %}
+
+                        
+                        <div class="col-1 text-center"></div>
+                        <div class="col text-center">
+                            <p class="text-uppercase mb-5">To get started login:</p>
+                            <a class="btn btn-primary btn-xl" role="button" href={% url 'login' %}>Login</a>
+                        </div>
+                        <div class="col-1 text-center"></div>
+                        <div class="col">
+                            <p class="text-uppercase mb-5">Or quickly create a fresh account:</p>
+                            <a class="btn btn-primary btn-xl" role="button" href="#services" style="margin: 0;">Register</a>
+                        </div>
+                        <div class="col-1"></div>
+                    {% endif %}
+                </div>
+
+        </div>
+    </header>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src={% static 'home_assets/js/creative.js' %}></script>
+</body>
+
+</html>
+
