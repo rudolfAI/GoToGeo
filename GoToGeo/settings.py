@@ -41,6 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    #3rd party libraries
+    'django_countries',
+    'phonenumber_field',
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
