@@ -9,7 +9,7 @@
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item" href={% url 'Profile:profile_view' %}>View Profile</a></li>
-            <li><a class="dropdown-item" href='admin'>Admin Page</a></li>
+            <li><a class="dropdown-item" href='/admin/'>Admin Page</a></li>
             
             <li>
                 <form id="logoutForm" action="/logout/" method="post">{% csrf_token %}
@@ -26,6 +26,6 @@
 {% else %}
     <ul class="nav navbar-nav navbar-right">
         <li class="nav-item"><a class="nav-link active" href={% url 'login' %}>Log in</a></li>
-        <li class="nav-item"><a class="nav-link active" href='admin'>Admin Log In</a></li>
+        <li class="nav-item"><a class="nav-link active" href='/admin/'>Admin Log In</a></li>
     </ul>
 {% endif %}

@@ -21,15 +21,13 @@ class Profile(models.Model):
 
     def __str__(self):
         if self.user.first_name and self.user.last_name:
-            name =  f"{self.user.first_name} {self.user.last_name}\n"
+            name =  f"{self.user.first_name} {self.user.last_name}"
         else:
-            name = f"{self.user}\n"
-        name += f"N: {self.geo_h}\n"
-        name += f"W: {self.geo_v}\n"
+            name = f"{self.user}"
         return name
 
     def get_absolute_url(self):
-        return reverse("Profile:profile_view", kwargs={"id": self.id})
+        return reverse("Profile:profile_view")
     
     def save(self, *args, **kwargs):
         if not self.id:
