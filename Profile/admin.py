@@ -1,7 +1,5 @@
 from django.contrib import admin
-from .models import Profile
-from django.contrib.auth.admin import UserAdmin
-
+from Profile.models import Audit, Profile
 
 @admin.register(Profile)
 class CustomProfile(admin.ModelAdmin):
@@ -12,3 +10,6 @@ class CustomProfile(admin.ModelAdmin):
             return Profile.objects.all()
         else:
             return Profile.objects.filter(id=request.user.profile.id)
+
+
+admin.site.register(Audit)

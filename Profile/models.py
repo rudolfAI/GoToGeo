@@ -80,3 +80,15 @@ class Profile(models.Model):
 
         thumbnail = File(thumb_io, name=image.name)
         return thumbnail
+    
+class Audit(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    time = models.DateTimeField()
+    login = models.BooleanField()
+
+    def __str__(self):
+        if self.login:
+            msg = "Logged in"
+        else:
+            msg = "Logged out"
+        return f"User: {self.user}: Date & Time: {self.time}: Status: {msg}"
