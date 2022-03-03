@@ -22,6 +22,7 @@ class Profile(models.Model):
 
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    
     picture = models.ImageField(upload_to=content_image_name)
     phone_number = PhoneNumberField()
     home_address = models.CharField(max_length=256)
@@ -51,6 +52,7 @@ class Profile(models.Model):
         """Overrides default save method to appropriately handle
         saving profile pictures as well as resizing them smaller.
         """
+
         if not self.id:
             temp_picture = self.picture
             self.picture = None

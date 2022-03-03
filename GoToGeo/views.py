@@ -49,6 +49,8 @@ class RegisterView(View):
         
         If forms are valid, server will redirect user to their new profile.
         """
+        
+        
         form_user = NewUserForm(request.POST)
         form_profile = ProfileUpdateForm(request.POST, request.FILES)
         
