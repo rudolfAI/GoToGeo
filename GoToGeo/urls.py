@@ -1,12 +1,12 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import HomeView
-from .forms import BootstrapAuthenticationForm
-from django.contrib.auth.views import LoginView
 from datetime import datetime
 from django.conf import settings
 from django.conf.urls.static import static
-from django.contrib.auth.views import LogoutView
+from django.contrib.auth.views import LogoutView, LoginView
+
+from .views import HomeView, RegisterView
+from .forms import BootstrapAuthenticationForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
              }
          ),
          name='login'),
+    path("register", RegisterView.as_view(), name="register"),
     path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

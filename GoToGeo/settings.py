@@ -15,7 +15,7 @@ from pathlib import Path
 SITE_ID = 1
 SITE_NAME = 'GoTo Geo'
 LOGIN_URL = '/login'
-LOGIN_REDIRECT_URL= '/profile'
+LOGIN_REDIRECT_URL= '/geo_map'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
