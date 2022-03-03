@@ -1,0 +1,39 @@
+{# Update MODAL #}
+<div id="update_modal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Update Details</h4>
+                <button 
+                        type="button" 
+                        class="btn btn-lg" 
+                        aria-label="Close" 
+                        data-bs-dismiss="modal">&times;
+                </button>
+            </div>
+
+            <div class="modal-body" style="word-break: break-all;">
+                <form method='POST' >{% csrf_token %}
+                    {{form_user.as_table}}
+                    <label for="img">Current Profile Picture</label><br>
+                    <img id="img" src={{object.picture.url}} alt="" width="70px">
+                    {{form_profile.as_p}}
+                    <button class="btn btn-primary w-100">Update</button>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+{# Update MODAL #}
+
+<style>
+    label {
+        font-weight: bold;
+    }
+</style>
