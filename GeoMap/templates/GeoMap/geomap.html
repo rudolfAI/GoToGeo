@@ -62,6 +62,7 @@
                 geo_h: '{{i.geo_h}}',
                 geo_v: '{{i.geo_v}}',
                 url: '{{i.get_geo_profile_url}}',
+                img: '{{i.picture.url}}',
             }
           },
       {% endfor %}
@@ -80,9 +81,10 @@
             new mapboxgl.Popup({ offset: 25 }) // add popups
             .setHTML(
               `<h3>${feature.properties.title}</h3>
-              <p>Address: ${feature.properties.address}</p>
-              <p>N: ${feature.properties.geo_h}</p>
-              <p>W: ${feature.properties.geo_v}</p>
+              <img src='${feature.properties.img}' width=70px height=70px />
+              <p class="mb-0">Address: ${feature.properties.address}</p>
+              <p class="mb-0">N: ${feature.properties.geo_h}</p>
+              <p class="mb-0">W: ${feature.properties.geo_v}</p>
               <a href=${feature.properties.url}>View Profile</a>`
             )
           )
