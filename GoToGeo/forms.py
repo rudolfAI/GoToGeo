@@ -3,6 +3,10 @@ from django.contrib.auth.models import User
 from django import forms
 
 class BootstrapAuthenticationForm(AuthenticationForm):
+    """Default form used by django to log in users.
+    
+    It has been extended to use bootstrap classes for styling.
+    """
     username = forms.CharField(
         max_length=254,
         widget=forms.TextInput({
@@ -17,6 +21,10 @@ class BootstrapAuthenticationForm(AuthenticationForm):
     
     
 class NewUserForm(UserCreationForm):
+    """This form is used to capture all the user's personal information.
+    
+    It has to be used in conjunction with ProfileUpdateForm.
+    """
     email = forms.EmailField(required=True)
     
     def __init__(self, *args, **kwargs):

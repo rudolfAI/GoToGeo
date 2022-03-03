@@ -9,6 +9,8 @@ from Profile.forms import ProfileUpdateForm
 
 class HomeView(View):
     def __init__(self, *args, **kwargs):
+        """Generates default context and template name.
+        """
         self.template_name = "home_view/home.html"
         self.context = {
             'title' : 'Home',
@@ -16,10 +18,14 @@ class HomeView(View):
         }
     
     def get(self, request, *args, **kwargs):
+        """Create default home page for unauthenticated users.
+        """
         return render(request, self.template_name, self.context)
     
 class RegisterView(View):
     def __init__(self, *args, **kwargs):
+        """Generates default context and template name.
+        """
         self.template_name = "register.html"
         self.context = {
             'title' : "Register",
@@ -27,6 +33,9 @@ class RegisterView(View):
         }
         
     def get(self, request, *args, **kwargs):
+        """Creates user and profile forms. Both need to be filled
+        in by the user to be valid.
+        """
         form_user = NewUserForm()
         form_profile = ProfileUpdateForm()
         self.context['form_user'] = form_user
@@ -34,7 +43,12 @@ class RegisterView(View):
         return render(request, self.template_name, self.context)
         
     def post(self, request, *args, **kwargs):
+        """Validates form data and creates a new user and related profile.
         
+        If forms aren't valid, will re-render the page with errors.
+        
+        If forms are valid, server will redirect user to their new profile.
+        """
         form_user = NewUserForm(request.POST)
         form_profile = ProfileUpdateForm(request.POST, request.FILES)
         

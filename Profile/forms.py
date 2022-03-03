@@ -4,11 +4,22 @@ from Profile.models import Profile
 from django.contrib.auth.models import User
 
 class CustomPhoneNumberPrefixWidget(PhoneNumberPrefixWidget):
+    """This form is used to create a country selector widget 
+    to be displayed with the phone number field.
+    
+    Example: You can choose South Africa, and type in 
+    078 123 1234 and it will update it to +27 78 123 1234
+    """
     def subwidgets(self, name, value, attrs=None):
         context = self.get_context(name, value, attrs)
         return context['widget']['subwidgets']
 
-class UserForm(forms.ModelForm):
+class UserUpdateForm(forms.ModelForm):
+    """This form is used to update user personal information,
+    excluding passwords. TODO: add password change/reset.
+    
+    It has to be used in conjunction with ProfileUpdateForm.
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['first_name'].widget.attrs['class'] = 'form-control'
@@ -24,6 +35,10 @@ class UserForm(forms.ModelForm):
             )
 
 class ProfileUpdateForm(forms.ModelForm):
+    """This form is used to create or update user profile data.
+    
+    It has to be used in conjunction with UserUpdateForm or NewUserForm.
+    """
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['picture'].widget.attrs['class'] = 'form-control'

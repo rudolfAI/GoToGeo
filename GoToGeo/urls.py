@@ -9,6 +9,7 @@ from .views import HomeView, RegisterView
 from .forms import BootstrapAuthenticationForm
 
 urlpatterns = [
+    path('admin/doc/', include('django.contrib.admindocs.urls')),
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
     path('profile/', include('Profile.urls'), name='Profile'),
