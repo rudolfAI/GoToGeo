@@ -91,4 +91,4 @@ class Audit(models.Model):
             msg = "Logged in"
         else:
             msg = "Logged out"
-        return f"User: {self.user}: Date & Time: {self.time}: Status: {msg}"
+        return f"User: {self.user}; Date & Time: {self.time}; Status: {msg}"
