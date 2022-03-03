@@ -2,14 +2,16 @@ from django.shortcuts import render, redirect
 from django.views import View
 from datetime import datetime
 from Profile.forms import ProfileUpdateForm, UserUpdateForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class ProfileView(View):
+class ProfileView(LoginRequiredMixin, View):
     """User's default profile view, protected from other users.
+    
     Only the owner of a profile, can edit their profile.
-
-    Args:
-        View (_type_): _description_
     """
+    login_url = '/login/'
+    redirect_field_name = 'redirect_to'
+    
     def __init__(self, *args, **kwargs):
         """Generates default context and template name
         """
@@ -37,13 +39,13 @@ class ProfileView(View):
     
     def post(self, request, *args, **kwargs):
         """POST request validates forms and updates user data
+        
         as per user's input.
         """
         try:
             object = request.user.profile
         except: 
             return redirect('login')
-        object = request.user.profile
         form_user = UserUpdateForm(request.POST, instance=object.user)
         form_profile = ProfileUpdateForm(request.POST, request.FILES, instance=object)
         
