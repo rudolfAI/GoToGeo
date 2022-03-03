@@ -8,7 +8,8 @@ from PIL import Image
 from django.urls import reverse
 
 def content_image_name(instance, imagename):
-    path = f"Profile/{instance.id}/{imagename}"
+    file_type = imagename.split(".")
+    path = f"Profile/{instance.id}/profile_image.{file_type[-1]}"
     return path
 
 class Profile(models.Model):
@@ -46,7 +47,12 @@ class Profile(models.Model):
         
     def resize_image(self, image, size=(900,600)):
         img = Image.open(image)
-        img.convert('RGB')
+        
+        if img.mode in ("RGBA", "P"):
+            img = img.convert('RGB')
+        
+        elif img.mode in ("JPEG"):
+            pass
         img.thumbnail(size)
 
         thumb_io = BytesIO()

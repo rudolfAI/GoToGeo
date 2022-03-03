@@ -26,7 +26,7 @@ class ProfileView(View):
     def post(self, request, *args, **kwargs):
         object = request.user.profile
         form_user = UserForm(request.POST, instance=object.user)
-        form_profile = ProfileUpdateForm(request.POST, instance=object)
+        form_profile = ProfileUpdateForm(request.POST, request.FILES, instance=object)
         
         if form_user.is_valid() and form_profile.is_valid():
             form_user.save()

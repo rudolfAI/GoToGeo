@@ -1,62 +1,80 @@
 {% extends 'layout.html' %}
 {% load static %}
 {% block content %}
-    
-<div class='card' style="max-width: 400px;">
-    <div class='card-header'>
-        <div style="display: grid;justify-content: center; justify-items: center; ">
-            <h5>Profile detail  :</h5>
-            <img src={{ object.picture.url }} style="max-width: 400px;">
+<style>
+    #center-aligned {
+        display: flex; 
+        justify-content: center;
+        justify-items: center;
+        align-items: center;
+        align-content: center;
+        flex-direction: column;
+    }
 
-        </div>
-    </div>
-    <div class='card-body'>
-        <div style="display: grid;justify-content: center; justify-items: center; ">
+    #card-header {
+        display: flex; 
+        align-items: center;
+        flex-direction: column;
+    }
 
+    th {
+        text-align: right;
+    }
+</style>
 
-            <table class="table">
-                <tbody>
-                    
-                    {% if object.user.first_name and object.user.last_name %}
-                        <tr>
-                            <th>Full Name(s)</th>
-                            <td>{{object.user.first_name}}</td>
-                        </tr>
-                        
-                        <tr>
-                            <th>Surname</th>
-                            <td>{{object.user.last_name}}</td>
-                        </tr>
-                    {% else %}
-                        <tr>
-                            <th>Username</th>
-                            <td>{{object.user}}</td>
-                        </tr>
-                    {% endif %}
+<div class='row'>
+    <div class='col-12'>
+        <div id="center-aligned" class="container d-flex">
 
-                    <tr>
-                        <th>Phone Number</th>
-                        <td>{{object.phone_number}}</td>
-                    </tr>
-                    <tr>
-                        <th>Home Address</th>
-                        <td>{{object.home_address}}</td>
-                    </tr>
-                    <tr>
-                        <th>GPS Coordinates</th>
-                        <td>
-                            <p>N: {{object.geo_h}}</p>
-                            <p>W: {{object.geo_v}}</p>
+            <div class='card'>
+                <div id="card-header" class='card-header' >
+                    <h5>Profile details:</h5>
+                    <img src={{ object.picture.url }}>
+                </div>
+                <div class='card-body'>
+                    <table class="table">
+                        <tbody>
+                            
+                            {% if object.user.first_name and object.user.last_name %}
+                                <tr>
+                                    <th>Full Name(s)</th>
+                                    <td>{{object.user.first_name}}</td>
+                                </tr>
+                                
+                                <tr>
+                                    <th>Surname</th>
+                                    <td>{{object.user.last_name}}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <th>Username</th>
+                                    <td>{{object.user}}</td>
+                                </tr>
+                            {% endif %}
+            
+                            <tr>
+                                <th>Phone Number</th>
+                                <td>{{object.phone_number}}</td>
+                            </tr>
+                            <tr>
+                                <th>Home Address</th>
+                                <td>{{object.home_address}}</td>
+                            </tr>
+                            <tr>
+                                <th>GPS Coordinates</th>
+                                <td>
+                                    <p>N{{object.get_h}}</p>
+                                    <p>W{{object.get_v}}</p>
+            
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            </div>
         </div>
     </div>
 </div>
 
-
-
 {% endblock content %}
-

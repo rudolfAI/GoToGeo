@@ -51,34 +51,36 @@
             </div>
             <div class="row">
                 
-                {% if user.is_authenticated %}
-                    <p class="text-center fs-1">Welcome back</p>
-                    <div class="col-1 text-center"></div>
-                    <div class="col text-center">
-                        <p class="text-uppercase text-faded mb-5" style="color: var(--bs-white);">View map:</p>
-                        <a class="btn btn-primary btn-xl" role="button" href={% url 'login' %}>Geo Map</a>
-                    </div>
-                    <div class="col-1 text-center"></div>
-                    <div class="col">
-                        <p class="text-uppercase text-faded mb-5" style="color: var(--bs-white);">View profile:</p>
-                        <a class="btn btn-primary btn-xl" role="button" href={% url 'Profile:profile_view' %} style="margin: 0;">Profile</a>
-                    </div>
-                    <div class="col-1"></div>
-                {% else %}
 
-                    
-                    <div class="col-1 text-center"></div>
-                    <div class="col text-center">
-                        <p class="text-uppercase text-faded mb-5" style="color: var(--bs-white);">To get started login:</p>
-                        <a class="btn btn-primary btn-xl" role="button" href={% url 'login' %}>Login</a>
-                    </div>
-                    <div class="col-1 text-center"></div>
-                    <div class="col">
-                        <p class="text-uppercase text-faded mb-5" style="color: var(--bs-white);">Or quickly create a fresh account:</p>
-                        <a class="btn btn-primary btn-xl" role="button" href="#services" style="margin: 0;">Register</a>
-                    </div>
-                    <div class="col-1"></div>
-                {% endif %}
+
+              {% if user.is_authenticated %}
+                  <p class="text-center fs-1">Welcome back</p>
+                  <div class="col-1 text-center"></div>
+                  <div class="col text-center">
+                      <p class="text-uppercase mb-5">View map:</p>
+                      <a class="btn btn-primary btn-xl" role="button" href={% url 'GeoMap:geo_view' %}>Geo Map</a>
+                  </div>
+                  <div class="col-1 text-center"></div>
+                  <div class="col">
+                      <p class="text-uppercase mb-5">View profile:</p>
+                      <a class="btn btn-primary btn-xl" role="button" href={% url 'Profile:profile_view' %} style="margin: 0;">Profile</a>
+                  </div>
+                  <div class="col-1"></div>
+              {% else %}
+
+                        
+                  <div class="col-1 text-center"></div>
+                  <div class="col text-center">
+                      <p class="text-uppercase mb-5">To get started login:</p>
+                      <a class="btn btn-primary btn-xl" role="button" href={% url 'login' %}>Login</a>
+                  </div>
+                  <div class="col-1 text-center"></div>
+                  <div class="col">
+                      <p class="text-uppercase mb-5">Or quickly create a fresh account:</p>
+                      <a class="btn btn-primary btn-xl" role="button" href="#services" style="margin: 0;">Register</a>
+                  </div>
+                  <div class="col-1"></div>
+              {% endif %}
             </div>
         </div>
     </header>
