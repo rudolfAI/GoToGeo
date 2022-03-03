@@ -15,8 +15,7 @@ urlpatterns = [
     path('geo_map/', include('GeoMap.urls'), name='GeoMap'),
     
     path('login/',
-         LoginView.as_view
-         (
+         LoginView.as_view(
              template_name='login.html',
              authentication_form=BootstrapAuthenticationForm,
              extra_context=

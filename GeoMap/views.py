@@ -7,7 +7,7 @@ class GeoMapView(View):
     def __init__(self, *args, **kwargs):
         self.template_name = 'GeoMap/geomap.html'
         self.context = {
-            'title' : 'Goto Geo Map',
+            'title' : 'Geo Map',
             'date' : datetime.now()
         }
         
@@ -21,7 +21,7 @@ class ProfileView(View):
     def __init__(self, *args, **kwargs):
         self.template_name = 'GeoMap/profile.html'
         self.context = {
-            'title' : 'Goto Geo Profile',
+            'title' : 'Geo Profile',
             'date' : datetime.now()
         }
         

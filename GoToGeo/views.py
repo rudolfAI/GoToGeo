@@ -10,9 +10,13 @@ from Profile.forms import ProfileUpdateForm
 class HomeView(View):
     def __init__(self, *args, **kwargs):
         self.template_name = "home_view/home.html"
+        self.context = {
+            'title' : 'Home',
+            'date' : datetime.now()
+        }
     
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name, {'hello':'world'})
+        return render(request, self.template_name, self.context)
     
 class RegisterView(View):
     def __init__(self, *args, **kwargs):

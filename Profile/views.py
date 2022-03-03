@@ -1,20 +1,21 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.views import View
 from datetime import datetime
 from Profile.forms import ProfileUpdateForm, UserForm
-
-from Profile.models import Profile
 
 class ProfileView(View):
     def __init__(self, *args, **kwargs):
         self.template_name = 'Profile/profile.html'
         self.context = {
-            'Title' : 'User Profile',
+            'title' : 'User Profile',
             'date' : datetime.now()
         }
     
     def get(self, request, *args, **kwargs):
-        object = request.user.profile
+        try:
+            object = request.user.profile
+        except: 
+            return redirect('login')
         form_user = UserForm(instance=object.user)
         form_profile = ProfileUpdateForm(instance=object)
         
@@ -24,6 +25,10 @@ class ProfileView(View):
         return render(request, self.template_name, self.context)
     
     def post(self, request, *args, **kwargs):
+        try:
+            object = request.user.profile
+        except: 
+            return redirect('login')
         object = request.user.profile
         form_user = UserForm(request.POST, instance=object.user)
         form_profile = ProfileUpdateForm(request.POST, request.FILES, instance=object)
